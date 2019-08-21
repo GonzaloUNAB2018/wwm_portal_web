@@ -1,0 +1,132 @@
+<!--
+  Generated template for the DataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title align="center">{{tipo}} de {{nickName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button round outline (click)="exportToCSV()">Export To CSV</button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-grid *ngIf="!caminata">
+      <ion-row>
+        <ion-col>
+          <p align="center">ID</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Fecha</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Hora</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Vector X</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Vector Y</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Vector Z</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-grid *ngIf="caminata">
+      <ion-row>
+        <ion-col>
+          <p align="center">ID</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Fecha</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Hora</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Latitud</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Longitud</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Altura (cota)</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Pasos</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Velocidad</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <ion-list>
+    <div *ngFor="let data of datas">
+      <ion-grid *ngIf="!caminata">
+        <ion-row>
+          <ion-col>
+            <p align="center">{{data.id}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.date}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.time}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.x}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.y}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.z}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngIf="caminata">
+        <ion-row>
+          <ion-col>
+            <p align="center">{{data.id}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.date}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.time}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.lat}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.lng}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.alt}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.steps}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.speed}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>   
+    </div>
+  </ion-list>
+  
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

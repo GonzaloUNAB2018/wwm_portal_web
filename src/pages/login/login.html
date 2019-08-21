@@ -5,17 +5,21 @@
       <ion-col>
 
       </ion-col>
-      <ion-col>
+      <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+
+        <p padding class="title">Portal de Datos</p>
+        <p class="title2">Walk With Me</p>
         <ion-list>
           <ion-item>
-            <ion-label float>Email</ion-label>
-            <ion-input type="email"></ion-input>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" [(ngModel)]="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label float>Password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
           </ion-item>
         </ion-list>
+        <button ion-button outline block round (click)="login()">LOGIN</button>
       </ion-col>
       <ion-col>
 

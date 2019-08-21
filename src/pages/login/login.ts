@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { HomePage } from '../home/home';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +11,42 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //user = this.afAuth.auth.currentUser;
+  //uid = this.user.uid;
+  email: any;
+  password: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private afAuth: AngularFireAuth,
+    public loadingCtrl: LoadingController
+    ) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  login(){
+    if(this.email === "a@a.cl"){
+      this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(()=>{
+        this.navCtrl.setRoot(HomePage);
+        this.loadingFromLogin();
+      })
+    }else{
+      alert('Su Email no tiene privilegios!')
+    }
+  }
+
+  loadingFromLogin(){
+    const loading = this.loadingCtrl.create({
+         content: 'Please wait...',
+         duration: 2000
+       });
+    
+       loading.present();
   }
 
 }
