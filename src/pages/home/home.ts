@@ -17,6 +17,8 @@ export class HomePage {
 
   myUser = this.afAuth.auth.currentUser;
   uid = this.myUser.uid;
+  loadingContent: string;
+  loadingAlert: any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,19 +28,19 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController
     ) {
-
-      console.log(this.uid)
-
-      //if(!this.users){
-        
-     // }
-      
+      console.log(this.uid);
+      this.loadingContent='Obteniendo datos de usuarios'
+      this.loading(this.loadingContent);
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    
     this.afProvider.getUsersList().valueChanges().subscribe(users=>{
       this.users=users;
-      console.log(this.users)
+      console.log(this.users);
+      if(users){
+        this.loadingAlert.dismiss();
+      }
     })
   };
 
@@ -71,19 +73,20 @@ export class HomePage {
   }
   
   signOut(){
+    this.loadingContent='Cerrando Sesión'
+    this.loading(this.loadingContent);
     this.afAuth.auth.signOut().then(()=>{
-      this.loading();
-      this.navCtrl.setRoot(LoginPage)
+      this.navCtrl.setRoot(LoginPage).then(()=>{
+        this.loadingAlert.dismiss();
+      })
     })
   }
 
-  loading(){
-    const loading = this.loadingCtrl.create({
-         content: 'Cerrando Sesión...',
-         duration: 1000
-       });
-    
-       loading.present();
+  loading(loadingContent: string){
+    this.loadingAlert = this.loadingCtrl.create({
+        content: loadingContent,
+      });
+      this.loadingAlert.present();
   }
 
 }

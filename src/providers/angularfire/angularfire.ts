@@ -28,7 +28,11 @@ export class AngularfireProvider {
     return this.afDb.list('Pacientes/'+uid+'/Ejercicios/', ref=> ref.orderByChild('id'))
   }
 
-  public getExerciceData(uid, type){
+  public getExerciceData(uid, type, number: number){
+    return this.afDb.list('Pacientes/'+uid+'/Ejercicios/'+type+'/Datos', ref=> ref.limitToFirst(number))
+  }
+
+  public getAllExerciceData(uid, type){
     return this.afDb.list('Pacientes/'+uid+'/Ejercicios/'+type+'/Datos')
   }
 

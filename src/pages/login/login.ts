@@ -20,7 +20,6 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afAuth: AngularFireAuth,
-    public loadingCtrl: LoadingController
     ) {
 
   }
@@ -33,20 +32,10 @@ export class LoginPage {
     if(this.email === "a@a.cl"){
       this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(()=>{
         this.navCtrl.setRoot(HomePage);
-        this.loadingFromLogin();
       })
     }else{
       alert('Su Email no tiene privilegios!')
     }
-  }
-
-  loadingFromLogin(){
-    const loading = this.loadingCtrl.create({
-         content: 'Please wait...',
-         duration: 2000
-       });
-    
-       loading.present();
   }
 
 }

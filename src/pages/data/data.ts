@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularfireProvider } from '../../providers/angularfire/angularfire';
 import { ExportToCsv } from 'export-to-csv';
 
-
-/**
- * Generated class for the DataPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -22,6 +15,7 @@ export class DataPage {
   uid: any;
   run: any;
   datas: any[];
+  allDatas: any[];
   data = {
     alt : null,
     date : null,
@@ -58,12 +52,14 @@ export class DataPage {
 
   hr: string;
   deteNow: string;
-  header: any[]
+  header: any[];
+  number: number = 30;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private afProvider: AngularfireProvider
+    private afProvider: AngularfireProvider,
+    public loadingCtrl: LoadingController,
     ) {
       this.tipo = navParams.get('tipo');
       this.uid = navParams.get('uid');
@@ -71,34 +67,29 @@ export class DataPage {
       this.nickName = navParams.get('nickName');
       console.log(this.tipo, this.nickName)
 
-      this.afProvider.getExerciceData(this.uid, this.tipo).valueChanges().subscribe(datas=>{
-        this.datas = datas;
-        console.log(this.datas)
-        if(this.tipo==="Caminata"){
-          this.caminata= true;
-          //this.header=['ID', 'Fecha', 'Hora', 'Latitud', 'Longitud', 'Altura (cota)', 'Velocidad']
-        }else{
-          this.caminata=false;
-          //this.header=['ID', 'Fecha', 'Hora', 'Vector X', 'Vector Y', 'Vector Z']
-        }
-        
-
-        
       
-      })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DataPage');
+  ionViewDidEnter() {
+    this.afProvider.getExerciceData(this.uid, this.tipo, this.number).valueChanges().subscribe(datas=>{
+      this.datas = datas;
+      console.log(this.datas)
+      if(this.tipo==="Caminata"){
+        this.caminata= true;
+      }else{
+        this.caminata=false;
+      }
+    })
   }
 
   doInfinite(infiniteScroll) {
+    this.number = this.number+15;
     console.log('Begin async operation');
 
     setTimeout(() => {
-      for (let data = 0; data < 20; data++) {
-        this.datas.push( this.datas.length );
-      }
+      this.afProvider.getExerciceData(this.uid, this.tipo, this.number).valueChanges().subscribe(datas=>{
+        this.datas = datas;
+      })
 
       console.log('Async operation has ended');
       infiniteScroll.complete();
@@ -107,41 +98,58 @@ export class DataPage {
 
   exportToCSV(){
 
-    var today = new Date();
-    var seg = Number(today.getSeconds());
-    var ss = String(today.getSeconds());
-    var min = Number(today.getMinutes());
-    var mi = String(today.getMinutes());
-    var hh = String(today.getHours());
-    var dd = String(today.getDate());
-    var mm = String(today.getMonth() + 1); //January is 0!
-    var yyyy = today.getFullYear();
-    this.deteNow = yyyy+'-'+mm+'-'+dd;
-    if(min>=0&&min<10){
-      mi = 0+mi
-    };
-    if(seg>=0&&seg<10){
-      ss = 0+ss
-    };
-    this.hr = hh+':'+mi+':'+ss;
+    this.afProvider.getAllExerciceData(this.uid, this.tipo).valueChanges().subscribe(allDatas=>{
+      this.allDatas = allDatas
+    });
+    
+    const loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Loading Please Wait...'
+    });
+    loading.present();
 
-    const options = { 
-      fieldSeparator: ',',
-      filename: this.tipo+'_'+this.nickName+'_'+this.run+'_'+this.deteNow+'_'+this.hr,
-      quoteStrings: '"',
-      decimalSeparator: '.',
-      showLabels: true, 
-      showTitle: true,
-      title: '',
-      useTextFile: false,
-      useBom: true,
-      useKeysAsHeaders: true,
-      //header: this.header
-    };
-   
-  const csvExporter = new ExportToCsv(options);
-   
-  csvExporter.generateCsv(this.datas);
+    setTimeout(()=>{
+      var today = new Date();
+      var seg = Number(today.getSeconds());
+      var ss = String(today.getSeconds());
+      var min = Number(today.getMinutes());
+      var mi = String(today.getMinutes());
+      var hh = String(today.getHours());
+      var dd = String(today.getDate());
+      var mm = String(today.getMonth() + 1); //January is 0!
+      var yyyy = today.getFullYear();
+      this.deteNow = yyyy+'-'+mm+'-'+dd;
+      if(min>=0&&min<10){
+        mi = 0+mi
+      };
+      if(seg>=0&&seg<10){
+        ss = 0+ss
+      };
+      this.hr = hh+':'+mi+':'+ss;
+  
+      const options = { 
+        fieldSeparator: ',',
+        filename: this.tipo+'_'+this.nickName+'_'+this.run+'_'+this.deteNow+'_'+this.hr,
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true, 
+        showTitle: true,
+        title: '',
+        useTextFile: false,
+        useBom: true,
+        useKeysAsHeaders: true,
+      };
+     
+    const csvExporter = new ExportToCsv(options);
+     
+    csvExporter.generateCsv(this.allDatas);
+    }, 2000)
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
+
+    
   }
 
   toChartPage(){

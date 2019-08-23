@@ -15,7 +15,7 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  //rootPage:any = LoginPage;
   uid: any;
   user = {} as User
 
@@ -37,10 +37,10 @@ export class MyApp {
           
             this.nav.setRoot(HomePage);
             
-        }else{
-          this.nav.setRoot(LoginPage);
-          //this.logged = false;
-        }        
+          }else{
+            this.nav.setRoot(LoginPage);
+            //this.logged = false;
+          }        
       });
     });
   }
