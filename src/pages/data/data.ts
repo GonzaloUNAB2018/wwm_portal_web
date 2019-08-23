@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularfireProvider } from '../../providers/angularfire/angularfire';
 import { ExportToCsv } from 'export-to-csv';
 
+
 /**
  * Generated class for the DataPage page.
  *
@@ -67,10 +68,12 @@ export class DataPage {
       this.tipo = navParams.get('tipo');
       this.uid = navParams.get('uid');
       this.run = navParams.get('run');
-      this.nickName = navParams.get('nickName')
+      this.nickName = navParams.get('nickName');
+      console.log(this.tipo, this.nickName)
 
       this.afProvider.getExerciceData(this.uid, this.tipo).valueChanges().subscribe(datas=>{
         this.datas = datas;
+        console.log(this.datas)
         if(this.tipo==="Caminata"){
           this.caminata= true;
           //this.header=['ID', 'Fecha', 'Hora', 'Latitud', 'Longitud', 'Altura (cota)', 'Velocidad']
@@ -139,6 +142,10 @@ export class DataPage {
   const csvExporter = new ExportToCsv(options);
    
   csvExporter.generateCsv(this.datas);
+  }
+
+  toChartPage(){
+    alert('En desarrollo')
   }
 
 

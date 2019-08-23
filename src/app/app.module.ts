@@ -17,6 +17,7 @@ import { AngularfireProvider } from '../providers/angularfire/angularfire';
 import { HttpClientModule } from '@angular/common/http';
 import { UserPageModule } from '../pages/user/user.module';
 import { DataPageModule } from '../pages/data/data.module';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -34,7 +35,8 @@ import { DataPageModule } from '../pages/data/data.module';
     AngularFireAuthModule,
     LoginPageModule,
     UserPageModule,
-    DataPageModule
+    DataPageModule,
+    CommonModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <ion-buttons left>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        Horizontal Bar Chart
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ngx-charts-bar-vertical
+      [view]="view"
+      [results]="data"
+      xAxis="true"
+      yAxis="true"
+      legend="true"
+      legendTitle="Countries"
+      showXAxisLabel="true"
+      showYAxisLabel="true"
+      xAxisLabel="Country"
+      yAxisLabel="GDP Per Capita">
+    </ngx-charts-bar-vertical>
+  </ion-content>
+      

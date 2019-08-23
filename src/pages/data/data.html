@@ -10,6 +10,7 @@
     <ion-title align="center">{{tipo}} de {{nickName}}</ion-title>
     <ion-buttons end>
       <button ion-button round outline (click)="exportToCSV()">Export To CSV</button>
+      <button ion-button round outline (click)="toChartPage()">Graficar</button>
     </ion-buttons>
   </ion-navbar>
   <ion-grid *ngIf="!caminata">
