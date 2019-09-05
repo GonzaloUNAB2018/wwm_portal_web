@@ -28,7 +28,8 @@ export class DataPage {
     type : null,
     x: null,
     y: null,
-    z: null
+    z: null,
+
   }
 
   //Caminata
@@ -49,6 +50,8 @@ export class DataPage {
   nickName: any;
 
   caminata: boolean;
+  abdominales: boolean;
+  saltos: boolean;
 
   hr: string;
   deteNow: string;
@@ -61,11 +64,21 @@ export class DataPage {
     private afProvider: AngularfireProvider,
     public loadingCtrl: LoadingController,
     ) {
-      this.tipo = navParams.get('tipo');
+      this.id = navParams.get('id');
+      if(this.id === '001'){
+        this.tipo = 'Caminata';
+        this.caminata = true;
+      }else if(this.id === '002'){
+        this.tipo = 'Saltos';
+        this.saltos = true;
+      }else{
+        this.tipo = 'Abdominales';
+        this.abdominales = true;
+      }
       this.uid = navParams.get('uid');
       this.run = navParams.get('run');
       this.nickName = navParams.get('nickName');
-      console.log(this.tipo, this.nickName)
+      console.log(this.id, this.nickName)
 
       
   }

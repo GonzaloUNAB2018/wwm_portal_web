@@ -16,7 +16,38 @@
       <button ion-button round outline (click)="toChartPage()">Graficar</button>
     </ion-buttons>
   </ion-navbar>
-  <ion-grid *ngIf="!caminata">
+  <ion-grid *ngIf="abdominales">
+      <ion-row>
+        <ion-col>
+          <p align="center">ID</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Fecha</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Hora</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Vector X</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Vector Y</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Vector Z</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Giroscopio X</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Giroscopio Y</p>
+        </ion-col>
+        <ion-col>
+          <p align="center">Giroscopio Z</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="saltos">
       <ion-row>
         <ion-col>
           <p align="center">ID</p>
@@ -76,7 +107,38 @@
 
   <ion-list>
     <div *ngFor="let data of datas">
-      <ion-grid *ngIf="!caminata">
+      <ion-grid *ngIf="abdominales">
+        <ion-row>
+          <ion-col>
+            <p align="center">{{data.id}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.date}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.time}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.x}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.y}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.z}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.giroscope_x}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.giroscope_y}}</p>
+          </ion-col>
+          <ion-col>
+            <p align="center">{{data.giroscope_z}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngIf="saltos">
         <ion-row>
           <ion-col>
             <p align="center">{{data.id}}</p>

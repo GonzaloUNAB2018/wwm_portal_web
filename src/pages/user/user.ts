@@ -42,8 +42,8 @@ export class UserPage {
     console.log('ionViewDidLoad UserPage');
   }
 
-  toExreciceData(tipo){
-    this.navCtrl.push(DataPage, {tipo:tipo, uid:this.uid, nickName:this.nickName, run:this.run})
+  toExreciceData(id){
+    this.navCtrl.push(DataPage, {id:id, uid:this.uid, nickName:this.nickName, run:this.run})
   }
 
   

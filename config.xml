@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="get.download.data.wwm" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="get.download.data.wwm" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Portal de datos Walk With Me</name>
     <description>Descargue los datos recolectados desde la app WWM.</description>
     <author email="g.orellanacanales@uandresbello.edu" href="http://www.unab.cl/">Ionic Framework Team</author>
