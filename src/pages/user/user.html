@@ -21,9 +21,24 @@
 
       </ion-col>
       <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
-        <button ion-item *ngFor="let exercice of exercices" (click)="toExreciceData(exercice.id)">
-          {{exercice.id}} {{exercice.tipo}} 
-        </button>
+        <ion-list inset>
+          <button ion-item (click)="toUserData()">
+            Datos del Paciente
+            <ion-icon item-end name="arrow-dropright"></ion-icon>
+          </button>
+          <ion-item-group>
+            <ion-item-divider>Datos de Ejercicios</ion-item-divider>
+            <button ion-item *ngFor="let exercice of exercices" (click)="toExreciceData(exercice.id)">
+              {{exercice.id}} {{exercice.tipo}}
+              <ion-icon item-end name="arrow-dropright"></ion-icon>
+            </button>
+            <ion-item-divider>Datos de pulsos cardíacos</ion-item-divider>
+            <button ion-item (click)="toRates()">
+              <p>Obtener información</p>
+              <ion-icon item-end name="arrow-dropright"></ion-icon>
+            </button>
+          </ion-item-group>
+        </ion-list>
       </ion-col>
       <ion-col>
 

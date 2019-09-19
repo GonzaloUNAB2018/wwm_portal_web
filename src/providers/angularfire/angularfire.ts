@@ -36,6 +36,14 @@ export class AngularfireProvider {
     return this.afDb.list('Pacientes/'+uid+'/Ejercicios/'+type+'/Datos')
   }
 
+  public getUserInfo(uid){
+    return this.afDb.object('Pacientes/'+uid+'/User_Info')
+  }
+
+  public getUserHearthRates(uid){
+    return this.afDb.list('Pacientes/'+uid+'/Hearth_Rates/')
+  }
+
   
 
   

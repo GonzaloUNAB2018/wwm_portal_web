@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserPageModule } from '../pages/user/user.module';
 import { DataPageModule } from '../pages/data/data.module';
 import { CommonModule } from '@angular/common';
+import { ProfileUserPageModule } from '../pages/profile-user/profile-user.module';
+import { UserRatesPageModule } from '../pages/user-rates/user-rates.module';
 
 
 
@@ -36,6 +38,8 @@ import { CommonModule } from '@angular/common';
     LoginPageModule,
     UserPageModule,
     DataPageModule,
+    ProfileUserPageModule,
+    UserRatesPageModule,
     CommonModule
   ],
   bootstrap: [IonicApp],
