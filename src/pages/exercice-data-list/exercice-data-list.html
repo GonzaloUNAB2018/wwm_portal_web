@@ -1,0 +1,23 @@
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+      </ion-col>
+      <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+        <ion-title>Ejercicios</ion-title>
+        <ion-list inset>
+          <button ion-item *ngFor="let exer of exers" (click)="toUserData()">
+            Any {{exer}}
+          </button>
+        </ion-list>
+        <p>{{exers}}</p>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

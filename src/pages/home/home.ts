@@ -13,8 +13,6 @@ import { LoginPage } from '../login/login';
 export class HomePage {
 
   users : any[];
-  
-
   myUser = this.afAuth.auth.currentUser;
   uid = this.myUser.uid;
   loadingContent: string;
@@ -45,6 +43,7 @@ export class HomePage {
   };
 
   toUserDataBase(uid, nickName, run){
+    console.log(uid, nickName, run)
     this.navCtrl.push(UserPage, {uid:uid, nickName:nickName, run:run})
   }
 

@@ -20,13 +20,15 @@ import { DataPageModule } from '../pages/data/data.module';
 import { CommonModule } from '@angular/common';
 import { ProfileUserPageModule } from '../pages/profile-user/profile-user.module';
 import { UserRatesPageModule } from '../pages/user-rates/user-rates.module';
+import { ExerciceDataListPage } from '../pages/exercice-data-list/exercice-data-list';
 
 
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ExerciceDataListPage
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +47,8 @@ import { UserRatesPageModule } from '../pages/user-rates/user-rates.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ExerciceDataListPage
   ],
   providers: [
     StatusBar,
