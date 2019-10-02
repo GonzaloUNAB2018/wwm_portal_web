@@ -21,19 +21,24 @@ export class AngularfireProvider {
   }
 
   public getUsersList(){
-    return this.afDb.list('Pacientes'); 
+    return this.afDb.list('Pacientes/Datos_Personales'); 
   }
 
   public getUserExercisesData(uid){
-    return this.afDb.list('Pacientes/'+uid+'/Ejercicios/', ref=> ref.orderByChild('id'))
+    //return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/Ejercicios/', ref=> ref.orderByChild('id'))
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid, ref=> ref.orderByChild('id'))
   }
 
-  public getExerciceData(uid, type, number: number){
-    return this.afDb.list('Pacientes/'+uid+'/Ejercicios/'+type+'/Datos', ref=> ref.limitToFirst(number))
+  /*public getExerciceData(uid, typeId, number: number){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+typeId+'/Grupos', ref=> ref.limitToFirst(number))
+  }*/
+
+  public getExerciceData(uid, typeId){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+typeId+'/Grupos')
   }
 
-  public getAllExerciceData(uid, type){
-    return this.afDb.list('Pacientes/'+uid+'/Ejercicios/'+type+'/Datos')
+  public getAllExerciceData(uid, typeId){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+typeId);
   }
 
   public getUserInfo(uid){

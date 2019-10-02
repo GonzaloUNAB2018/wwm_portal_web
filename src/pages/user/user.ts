@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularfireProvider } from '../../providers/angularfire/angularfire';
-import { DataPage } from '../data/data';
 import { ProfileUserPage } from '../profile-user/profile-user';
 import { UserRatesPage } from '../user-rates/user-rates';
+import { ExerciceDataListPage } from '../exercice-data-list/exercice-data-list';
 
 /**
  * Generated class for the UserPage page.
@@ -39,12 +39,13 @@ export class UserPage {
   }
 
   ionViewDidLoad() {
+    console.log(this.uid)
     console.log('ionViewDidLoad UserPage');
     if(this.uid != 0){
       this.afProvider.getUserExercisesData(this.uid).valueChanges().subscribe(exercices=>{
         this.exercices = exercices;
         if(this.exercices){
-
+          console.log(this.exercices.length)
         }
       })
     }
@@ -55,7 +56,7 @@ export class UserPage {
   }
 
   toExreciceData(id){
-    this.navCtrl.push(DataPage, {id:id, uid:this.uid, nickName:this.nickName, run:this.run})
+    this.navCtrl.push(ExerciceDataListPage, {id:id, uid:this.uid, nickName:this.nickName, run:this.run})
   }
 
   toRates(){
