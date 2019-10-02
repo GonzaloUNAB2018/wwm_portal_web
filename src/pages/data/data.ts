@@ -11,9 +11,10 @@ import { ExportToCsv } from 'export-to-csv';
 })
 export class DataPage {
 
-  tipo: any;
+  type: any;
   uid: any;
   run: any;
+  eid: any;
   datas: any[];
   allDatas: any[];
   data = {
@@ -41,7 +42,7 @@ export class DataPage {
   speed: any;
   steps: any;
   time: any;
-  type: any;
+  //type: any;
 
   //Saltos-ABS
   x: any;
@@ -64,30 +65,36 @@ export class DataPage {
     private afProvider: AngularfireProvider,
     public loadingCtrl: LoadingController,
     ) {
+      this.eid = navParams.get('eid');
       this.id = navParams.get('id');
-      if(this.id === '001'){
-        this.tipo = 'Caminata';
+      this.type = navParams.get('type')
+      if(this.type === 'Caminata'){
         this.caminata = true;
-      }else if(this.id === '002'){
-        this.tipo = 'Saltos';
+      }else if(this.type === 'Saltos'){
         this.saltos = true;
-      }else{
-        this.tipo = 'Abdominales';
+      }else if(this.type = 'Abdominales'){
         this.abdominales = true;
       }
       this.uid = navParams.get('uid');
       this.run = navParams.get('run');
       this.nickName = navParams.get('nickName');
-      console.log(this.id, this.nickName)
+      console.log(this.eid, this.id, this.type, this.uid, this.run, this.nickName);
 
       
   }
 
   ionViewDidEnter() {
-    this.afProvider.getExerciceData(this.uid, this.tipo, this.number).valueChanges().subscribe(datas=>{
+    console.log('Ejercicios_Pacientes/Ejercicios/'+this.uid+'/'+this.id+'/Grupos/'+this.eid)
+    this.afProvider.getExerciceDetailData(this.uid, this.id, this.eid, 10).valueChanges().subscribe(datas=>{
       this.datas = datas;
-      console.log(this.datas)
-      if(this.tipo==="Caminata"){
+      console.log(this.datas);
+      for(var n=0; n <= this.datas.length; n++){
+        console.log(this.datas[n].id);
+        if(n = this.datas.length){
+          break
+        }
+      }
+      if(this.type==="Caminata"){
         this.caminata= true;
       }else{
         this.caminata=false;
@@ -100,7 +107,7 @@ export class DataPage {
     console.log('Begin async operation');
 
     setTimeout(() => {
-      this.afProvider.getExerciceData(this.uid, this.tipo, this.number).valueChanges().subscribe(datas=>{
+      this.afProvider.getExerciceDetailData(this.uid, this.id, this.eid, this.number).valueChanges().subscribe(datas=>{
         this.datas = datas;
       })
 
@@ -111,7 +118,7 @@ export class DataPage {
 
   exportToCSV(){
 
-    this.afProvider.getAllExerciceData(this.uid, this.tipo).valueChanges().subscribe(allDatas=>{
+    this.afProvider.getAllExerciceData(this.uid, this.id, this.eid).valueChanges().subscribe(allDatas=>{
       this.allDatas = allDatas
     });
     
@@ -142,7 +149,7 @@ export class DataPage {
   
       const options = { 
         fieldSeparator: ',',
-        filename: this.tipo+'_'+this.nickName+'_'+this.run+'_'+this.deteNow+'_'+this.hr,
+        filename: this.type+'_'+this.nickName+'_'+this.run+'_'+this.deteNow+'_'+this.hr,
         quoteStrings: '"',
         decimalSeparator: '.',
         showLabels: true, 

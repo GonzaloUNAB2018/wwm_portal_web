@@ -29,24 +29,28 @@ export class AngularfireProvider {
     return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid, ref=> ref.orderByChild('id'))
   }
 
-  public getExerciceData(uid, type, number: number){
-    return this.afDb.list('Pacientes/'+uid+'/Ejercicios/'+type+'/Datos', ref=> ref.limitToFirst(number))
+  /*public getExerciceData(uid, typeId, number: number){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+typeId+'/Grupos', ref=> ref.limitToFirst(number))
+  }*/
+
+  public getExerciceData(uid, id){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+id+'/Grupos/')
   }
 
-  public getAllExerciceData(uid, typeId){
-    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+typeId+'/Datos');
+  public getExerciceDetailData(uid, id, eid, number: number){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+id+'/Grupos/'+eid+'/Datos', ref=> ref.limitToFirst(number))
+  }
+
+  public getAllExerciceData(uid, id, eid){
+    return this.afDb.list('Ejercicios_Pacientes/Ejercicios/'+uid+'/'+id+'/Grupos/'+eid+'/Datos');
   }
 
   public getUserInfo(uid){
-    return this.afDb.object('Pacientes/'+uid+'/User_Info')
+    return this.afDb.object('Pacientes/Datos_Personales/'+uid+'/User_Info');
   }
 
   public getUserHearthRates(uid){
-    return this.afDb.list('Pacientes/'+uid+'/Hearth_Rates/')
+    return this.afDb.list('Google_Fit/Pulsos_Cardiacos/'+uid+'/Hearth_Rates/');
   }
-
-  
-
-  
 
 }

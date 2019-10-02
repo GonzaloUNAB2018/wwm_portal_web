@@ -28,8 +28,8 @@
           </button>
           <ion-item-group>
             <ion-item-divider>Datos de Ejercicios</ion-item-divider>
-            <button ion-item *ngFor="let exercice of exercices" (click)="toExreciceData(exercice.id)">
-              {{exercice.id}} {{exercice.tipo}}
+            <button ion-item *ngFor="let exercice of exercices" (click)="toExreciceData(exercice.id, exercice.type)">
+              {{exercice.id}} {{exercice.type}}
               <ion-icon item-end name="arrow-dropright"></ion-icon>
             </button>
             <ion-item-divider>Datos de pulsos cardíacos</ion-item-divider>

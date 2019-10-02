@@ -55,8 +55,9 @@ export class UserPage {
     this.navCtrl.push(ProfileUserPage, {uid: this.uid})
   }
 
-  toExreciceData(id){
-    this.navCtrl.push(ExerciceDataListPage, {id:id, uid:this.uid, nickName:this.nickName, run:this.run})
+  toExreciceData(id, type){
+    console.log(id, type)
+    this.navCtrl.push(ExerciceDataListPage, {id:id, type:type, uid:this.uid, nickName:this.nickName, run:this.run})
   }
 
   toRates(){

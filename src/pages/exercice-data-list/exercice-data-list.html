@@ -6,13 +6,17 @@
 
       </ion-col>
       <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
-        <ion-title>Ejercicios</ion-title>
+        <ion-title>Ejercicios {{type}}</ion-title>
         <ion-list inset>
-          <button ion-item *ngFor="let exer of exers" (click)="toUserData()">
-            Any {{exer}}
+          <button ion-item *ngFor="let exercice of exercices" 
+          (click)="toExcerciceData( 
+            exercice.eid,
+            exercice.type,
+            exercice.save_time
+            )">
+            {{exercice.eid}} || {{exercice.type}} || {{exercice.save_time}}
           </button>
         </ion-list>
-        <p>{{exers}}</p>
       </ion-col>
       <ion-col>
 
