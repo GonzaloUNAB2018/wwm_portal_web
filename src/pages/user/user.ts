@@ -24,6 +24,7 @@ export class UserPage {
   exercices: any[];
   id: any;
   loadingNewData: any;
+  photo: any;
   
   constructor(
     public navCtrl: NavController, 
@@ -34,6 +35,7 @@ export class UserPage {
     this.uid = navParams.get('uid');
     this.nickName = navParams.get('nickName');
     this.run = navParams.get('run');
+    this.photo = navParams.get('photo');
 
     
   }
@@ -52,7 +54,7 @@ export class UserPage {
   }
 
   toUserData(){
-    this.navCtrl.push(ProfileUserPage, {uid: this.uid})
+    this.navCtrl.push(ProfileUserPage, {uid: this.uid, photo: this.photo})
   }
 
   toExreciceData(id, type){

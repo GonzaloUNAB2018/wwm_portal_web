@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularfireProvider } from '../../providers/angularfire/angularfire';
 import { DataPage } from '../data/data';
+import { ExportToCsv } from 'export-to-csv';
 
-/**
- * Generated class for the ExerciceDataListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,11 +20,16 @@ export class ExerciceDataListPage {
   exercices: any[] = []
   exers: any[];
   numbers: any[]=[]
+  array: any[] = [];
+  data: any;
+  deteNow: string;
+  hr: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public afProvider: AngularfireProvider
+    public afProvider: AngularfireProvider,
+    public loadingCtrl: LoadingController
     
     ) {
 
@@ -45,24 +45,10 @@ export class ExerciceDataListPage {
           console.log(this.exercices)
         }
       })
-      //this.typeId = navParams.get('typeId')
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExerciceDataListPage');
-    
-    /*this.afProvider.getAllExerciceData(this.uid, this.id).valueChanges().subscribe(exercices=>{
-      this.exercices = exercices;
-      console.log(this.exercices[0]);
-      this.numbers=this.array(this.exercices[0]);
-      //console.log(this.numbers.keys())
-      
-      
-    })*/
-  }
-
-  array(exs: any[]){
-    return exs;
   }
 
   toExcerciceData(eid, type, save_time){
@@ -77,6 +63,78 @@ export class ExerciceDataListPage {
         uid: this.uid
       }
     )
+  }
+
+  downloadAllData(data){
+    var h : number = 0
+    for(var n = 0; n <= this.exercices.length; n++){
+      //console.log(this.exercices[n].Datos);      
+      if(n === this.exercices.length-1){
+        break
+      }
+    };
+    return this.exercices[n].Datos;
+  }
+  
+
+  result(){
+    console.log(this.downloadAllData(this.array))
+  }
+
+  exportToCSV(){
+    
+    const loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Loading Please Wait...'
+    });
+    loading.present();
+
+    setTimeout(()=>{
+      var today = new Date();
+      var seg = Number(today.getSeconds());
+      var ss = String(today.getSeconds());
+      var min = Number(today.getMinutes());
+      var mi = String(today.getMinutes());
+      var hh = String(today.getHours());
+      var dd = String(today.getDate());
+      var mm = String(today.getMonth() + 1); //January is 0!
+      var yyyy = today.getFullYear();
+      this.deteNow = yyyy+'-'+mm+'-'+dd;
+      if(min>=0&&min<10){
+        mi = 0+mi
+      };
+      if(seg>=0&&seg<10){
+        ss = 0+ss
+      };
+      this.hr = hh+':'+mi+':'+ss;
+  
+      const options = { 
+        fieldSeparator: ',',
+        filename: this.type+'_'+this.nickName+'_'+this.run+'_'+this.deteNow+'_'+this.hr,
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true, 
+        showTitle: true,
+        title: '',
+        useTextFile: false,
+        useBom: true,
+        useKeysAsHeaders: true,
+      };
+     
+    const csvExporter = new ExportToCsv(options);
+     
+    csvExporter.generateCsv(this.array);
+    }, 2000)
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
+
+    
+  }
+
+  toChartPage(){
+    alert('En desarrollo')
   }
 
   
