@@ -1,5 +1,6 @@
 <article>
     <h1>Descarga datos obtenidos desde la app Android Exercise With Me</h1>
+    <img src="./src/assets/imgs/0.PNG" width="200px">
     <h2>versión 0.0.5</h2>
     <h2>Detalles</h2>
     <p>La aplicación está construida desde el entorno de 
