@@ -1,7 +1,6 @@
 <article>
-    <h1>Descarga datos obtenidos desde la app Android Walk With Me</h1>
-    <h2>versión 0.0.2</h2>
-    <img src="./src/assets/imgs/logo-kaplan.png" alt="100px">
+    <h1>Descarga datos obtenidos desde la app Android Exercise With Me</h1>
+    <h2>versión 0.0.5</h2>
     <h2>Detalles</h2>
     <p>La aplicación está construida desde el entorno de 
         Ionic en su versión 3.9.2.</p>
@@ -10,7 +9,7 @@
             https://walkwithme-001.firebaseapp.com/
         </a> donde se envían todas las actualizaciones del desarrollo.
     </p>
-    <h3>Instalación</h3>
+    <h3>Instalation Notes (Developer)</h3>
     <h4>Si no cuentas con el framework, instala Ionic v 3.9.2</h4>
     <code>npm install -g ionic@3.9.2 cordova@7.1.0</code>
     <h4>Descarga desde Github</h4>
@@ -27,21 +26,25 @@
     </p>
     <p>Quienes no hayan recibido directamente las credenciales de ingreso, solicitarlas a 
         <a href="mailto:g.orellanacanales@uandresbello.edu">g.orellanacanales@uandresbello.edu</a>.</p>
-    <h3>Modo de uso</h3>
-    <p>Una vez abierto el portal ingresa las credenciales.</p>
+    <h3>User Manual</h3>
+    <p>Busque en el navegador la URL <a href="https://walkwithme-001.firebaseapp.com/">
+        https://walkwithme-001.firebaseapp.com/
+    </a> y abra la página web. n ella agregue las credenciales.</p>
     <img src="./src/assets/imgs/0.PNG" width="700px">
     <p>Elija una de las personas que están en la lista.</p>
-    <p>Cada lista está indicado el NickName y el RUN sin dígito verificador.</p>
+    <p>Cada lista está indicado el Nombre y el RUN con dígito verificador.</p>
     <img src="./src/assets/imgs/1.PNG" width="700px">
-    <p>Una vez en el paciente, indíque el dato que desea revisar</p>
+    <p>Abrirá un listado donde puede elegir entre ver los datos del usuario, los ejercicios realizados y el acceso a registro de pulsaciones cardiacas.</p>
     <img src="./src/assets/imgs/2.PNG" width="700px">
-    <p>Se desplegará el listado de datos que busca</p>
+    <p>Elija el ejercicio que desea revisar.</p>
     <img src="./src/assets/imgs/3.PNG" width="700px">
+    <p>Se desplegará el listado de datos que busca</p>
+    <img src="./src/assets/imgs/4.PNG" width="700px">
     <p>Para descargar los datos en formato CSV, solo presione "EXPORT TO CSV"</p>
-    <img src="./src/assets/imgs/4.PNG" width="200px">
+    <img src="./src/assets/imgs/5.PNG" width="200px">
     <p>Se descargará un archivo que tiene la siguiente nomenclatura en el nombre:</p>
     <p>"Tipo de ejercicio"_"NickName"_"RUN"_"Fecha de hoy"_"Hora de descarga"</p>
-    <img src="./src/assets/imgs/5.PNG" width="400px">
+    <img src="./src/assets/imgs/6.PNG" width="400px">
     <p>Abra el archivo como documento de Excel para ver el resultado.</p>
-    <img src="./src/assets/imgs/6.PNG" width="700px">
+    <img src="./src/assets/imgs/7.PNG" width="700px">
 </article>
