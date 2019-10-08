@@ -8,6 +8,8 @@
     <p>Es posible ser ejecutada tambien desde la dirección web 
         <a href="https://walkwithme-001.firebaseapp.com/">
             https://walkwithme-001.firebaseapp.com/
+        </a> y <a href="https://walkwithme-001.web.app/">
+            https://walkwithme-001.web.app/
         </a> donde se envían todas las actualizaciones del desarrollo.
     </p>
     <h3>Instalation Notes (Developer)</h3>
@@ -30,6 +32,8 @@
     <h3>User Manual</h3>
     <p>Busque en el navegador la URL <a href="https://walkwithme-001.firebaseapp.com/">
         https://walkwithme-001.firebaseapp.com/
+    </a> o al <a href="https://walkwithme-001.web.app/">
+            https://walkwithme-001.web.app/
     </a> y abra la página web. n ella agregue las credenciales.</p>
     <img src="./src/assets/imgs/0.PNG" width="700px">
     <p>Elija una de las personas que están en la lista.</p>
